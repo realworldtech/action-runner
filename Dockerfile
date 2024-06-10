@@ -1,5 +1,5 @@
 FROM ghcr.io/actions/actions-runner:latest
-RUN sudo apt-get update && sudo apt-get install -y python3-pip python3-virtualenv ca-certificates curl
+RUN sudo apt-get update && sudo apt-get install -y python3-pip python3-virtualenv ca-certificates curl unzip
 RUN sudo install -m 0755 -d /etc/apt/keyrings
 RUN sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 RUN sudo chmod a+r /etc/apt/keyrings/docker.asc
