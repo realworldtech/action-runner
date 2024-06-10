@@ -7,5 +7,5 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/doc
 RUN sudo apt-get update
 RUN sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 RUN curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh && bash install.sh
-RUN . "$HOME/.nvm/nvm.sh" && nvm install 20
+RUN . "$HOME/.nvm/nvm.sh" && sudo nvm install 20
 
