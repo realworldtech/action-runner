@@ -10,8 +10,28 @@ on:
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Keep workflow alive
+        run: |
+          echo "Last automated build: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > .github/last-build.txt
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .github/last-build.txt
+          git diff --staged --quiet || git commit -m "Automated keepalive - $(date -u '+%Y-%m-%d')"
+          git push
+  
   rebuild:
     runs-on: ubuntu-latest
+    needs: keepalive
     
     permissions:
       contents: read
