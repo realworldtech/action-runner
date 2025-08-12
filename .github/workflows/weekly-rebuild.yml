@@ -1,6 +1,9 @@
-name: Weekly Rebuild
+name: Build and Push Docker Image
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     # Run every Monday at 2:00 AM UTC
     - cron: '0 2 * * 1'
